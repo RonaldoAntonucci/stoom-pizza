@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import Route from './Route';
 
 import Dough from '../pages/Dough';
-import Additional from '../pages/Additional';
+import Ingredients from '../pages/Ingredients';
 import Size from '../pages/Size';
 
 const Routes: React.FC = () => (
@@ -12,7 +12,7 @@ const Routes: React.FC = () => (
     <Route path="/" exact component={Dough} />
 
     <Route path="/dough" exact component={Dough} />
-    <Route path="/additional" exact component={Additional} />
+    <Route path="/ingredients" exact component={Ingredients} />
     <Route path="/size" exact component={Size} />
   </Switch>
 );
