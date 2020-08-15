@@ -9,7 +9,7 @@ import Size from '../pages/Size';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" exact component={Dough} />
+    <Route path="/" exact component={Ingredients} />
 
     <Route path="/dough" exact component={Dough} />
     <Route path="/ingredients" exact component={Ingredients} />
