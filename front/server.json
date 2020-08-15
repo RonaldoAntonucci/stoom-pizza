@@ -37,5 +37,37 @@
       "id": 5,
       "name": "champignon"
     }
+  ],
+  "sizes": [
+    {
+      "id": 1,
+      "name": "Brotinho",
+      "description": "4 fatias (20cm)"
+    },
+    {
+      "id": 2,
+      "name": "Pequena",
+      "description": "6 fatias (25cm)"
+    },
+    {
+      "id": 3,
+      "name": "Média",
+      "description": "8 fatias (30cm)"
+    },
+    {
+      "id": 4,
+      "name": "Grande",
+      "description": "10 fatias (35cm)"
+    },
+    {
+      "id": 5,
+      "name": "Família",
+      "description": "12 fatias (40cm)"
+    },
+    {
+      "id": 6,
+      "name": "Gigante",
+      "description": "16 fatias (45cm)"
+    }
   ]
 }
