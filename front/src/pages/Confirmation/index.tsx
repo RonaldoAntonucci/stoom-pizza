@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import useOrder from '../../hooks/useOrder';
 
 const Confirmation: React.FC = () => {
-  const { dough, ingredients, size } = useOrder();
-
-  console.log(ingredients);
+  const { dough, ingredients, size, dailyRecommendation, points } = useOrder();
 
   const ingredientsInline = useMemo(() => {
     if (!ingredients) {
@@ -30,6 +28,11 @@ const Confirmation: React.FC = () => {
       <p>massa: {dough.name}</p>
       <p>tamanho: {size.name}</p>
       <p>ingredientes: {ingredientsInline}</p>
+
+      {dailyRecommendation && (
+        <b>Confirmando o pedido você ganhará {points}!!</b>
+      )}
+
       <Link to="/doughs">Início</Link>
     </div>
   );

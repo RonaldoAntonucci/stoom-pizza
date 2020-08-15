@@ -32,12 +32,18 @@ interface Recommendation {
     id: string;
     name: string;
   };
+  points: number;
   ingredients: [{ id: string; name: string }];
 }
 
 const Dough: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { setDough, setIngredients } = useOrder();
+  const {
+    setDough,
+    setIngredients,
+    setDailyRecommendation,
+    setPoints,
+  } = useOrder();
   const { push } = useHistory();
 
   const [apiDoughs, setApiDoughs] = useState<Dough[]>([]);
@@ -46,12 +52,14 @@ const Dough: React.FC = () => {
   );
 
   useEffect(() => {
+    setDailyRecommendation(false);
+    setPoints(0);
     api.get<Dough[]>('/doughs').then((response) => setApiDoughs(response.data));
 
     api
       .get<Recommendation>('/recommendation')
       .then((response) => setRecommendation(response.data));
-  }, []);
+  }, [setDailyRecommendation, setPoints]);
 
   const checkboxDoughsOptions = useMemo<CheckboxOption[]>(
     () =>
@@ -85,7 +93,6 @@ const Dough: React.FC = () => {
       const selectedDough = apiDoughs
         .map((dough) => dough.name)
         .indexOf(data.doughs[0]);
-      console.log(selectedDough);
       setDough(apiDoughs[selectedDough]);
       push('/ingredients');
     },
@@ -96,10 +103,19 @@ const Dough: React.FC = () => {
     if (recommendation) {
       setDough(recommendation.dough);
       setIngredients(recommendation.ingredients);
+      setDailyRecommendation(true);
+      setPoints(recommendation.points);
 
       push('/size');
     }
-  }, [recommendation, setDough, setIngredients, push]);
+  }, [
+    recommendation,
+    setDough,
+    setIngredients,
+    setDailyRecommendation,
+    setPoints,
+    push,
+  ]);
 
   return (
     <div>
@@ -110,6 +126,11 @@ const Dough: React.FC = () => {
           <p>Nome: {recommendation.name}</p>
           <p>Massa: {recommendation.dough.name}</p>
           <p>Ingredientes: {recommendationIngredients}</p>
+
+          <p>
+            Ganhe <b>{recommendation.points} pontos</b> ao concluir o seu
+            pedido!!
+          </p>
 
           <button onClick={handleSelectRecommendation} type="button">
             Selecionar

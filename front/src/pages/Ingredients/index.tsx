@@ -27,16 +27,19 @@ interface CheckboxOption {
 
 const Ingredients: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { setIngredients } = useOrder();
+  const { setIngredients, setDailyRecommendation, setPoints } = useOrder();
   const { push } = useHistory();
 
   const [apiIngredients, setApiIngredients] = useState<Ingredient[]>([]);
 
   useEffect(() => {
+    setDailyRecommendation(false);
+    setPoints(0);
+
     api
       .get<Ingredient[]>('/ingredients')
       .then((response) => setApiIngredients(response.data));
-  }, []);
+  }, [setDailyRecommendation, setPoints]);
 
   const checkboxIngredientsOptions = useMemo<CheckboxOption[]>(
     () =>
