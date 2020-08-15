@@ -1,9 +1,12 @@
-import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo, useCallback } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import useOrder from '../../hooks/useOrder';
+import api from '../../services/api';
 
 const Confirmation: React.FC = () => {
+  const { push } = useHistory();
+
   const { dough, ingredients, size, dailyRecommendation, points } = useOrder();
 
   const ingredientsInline = useMemo(() => {
@@ -22,6 +25,10 @@ const Confirmation: React.FC = () => {
     return ingredientsStr;
   }, [ingredients]);
 
+  const handleConfirmation = useCallback(() => {
+    api.post('/order', { dough, size, ingredients }).then(() => push('/'));
+  }, [dough, ingredients, push, size]);
+
   return (
     <div>
       <h1>Confirme seu pedido</h1>
@@ -34,6 +41,9 @@ const Confirmation: React.FC = () => {
       )}
 
       <Link to="/doughs">Início</Link>
+      <button type="button" onClick={handleConfirmation}>
+        Confirmar
+      </button>
     </div>
   );
 };
