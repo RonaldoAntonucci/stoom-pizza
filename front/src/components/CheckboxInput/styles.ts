@@ -10,3 +10,5 @@ export const Label = styled.label`
   display: flex;
   align-items: center;
 `;
+
+export const InputContent = styled.div``;

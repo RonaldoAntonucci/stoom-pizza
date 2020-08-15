@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, InputHTMLAttributes } from 'react';
 import { useField } from '@unform/core';
 
-import { Container, Label } from './styles';
+import { Container, Label, InputContent } from './styles';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -10,11 +10,18 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     id: string;
     value: string;
     label: string;
+    description?: string;
   }[];
 }
 
-const CheckboxInput: React.FC<Props> = ({ name, options, ...rest }) => {
+const CheckboxInput: React.FC<Props> = ({
+  name,
+  options,
+  multiple = true,
+  ...rest
+}) => {
   const inputRefs = useRef<HTMLInputElement[]>([]);
+
   const { fieldName, registerField, defaultValue = [] } = useField(name);
   useEffect(() => {
     registerField({
@@ -49,9 +56,22 @@ const CheckboxInput: React.FC<Props> = ({ name, options, ...rest }) => {
             value={option.value}
             type="checkbox"
             id={option.id}
+            onChange={() => {
+              if (!multiple) {
+                inputRefs.current.forEach((input, refIndex) => {
+                  if (refIndex !== index) {
+                    input.checked = false;
+                  }
+                });
+              }
+            }}
             {...rest}
           />
-          {option.label}
+
+          <InputContent>
+            {option.label}
+            {option.description && <p>{option.description}</p>}
+          </InputContent>
         </Label>
       ))}
     </Container>

@@ -50,7 +50,7 @@ const Ingredients: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
-      setIngredients(data.checkbox);
+      setIngredients(data.ingredients);
       push('/size');
     },
     [push, setIngredients],
@@ -59,7 +59,10 @@ const Ingredients: React.FC = () => {
   return (
     <div>
       <Form ref={formRef} onSubmit={handleNext}>
-        <CheckboxInput name="checkbox" options={checkboxIngredientsOptions} />
+        <CheckboxInput
+          name="ingredients"
+          options={checkboxIngredientsOptions}
+        />
         <button type="submit">Continuar</button>
       </Form>
     </div>
