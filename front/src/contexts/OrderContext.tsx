@@ -1,34 +1,37 @@
-import React, { createContext, useState, useMemo } from 'react';
+import React, { createContext, useState } from 'react';
 
-interface Order {
-  ingredients: string[];
-  dough: string;
-  size: string;
+interface Ingredient {
+  id: string;
+  name: string;
+}
+
+interface Dough {
+  id: string;
+  name: string;
+}
+
+interface Size {
+  id: string;
+  name: string;
+  description: string;
 }
 
 export interface OrderContextData {
-  ingredients: string[];
-  dough: string;
-  size: string;
-  order: Order;
+  ingredients: Ingredient[];
+  dough: Dough;
+  size: Size;
 
-  setIngredients(ingredients: string[]): void;
-  setDough(dough: string): void;
-  setSize(size: string): void;
+  setIngredients(ingredients: Ingredient[]): void;
+  setDough(dough: Dough): void;
+  setSize(size: Size): void;
 }
 
 const OrderContext = createContext<OrderContextData>({} as OrderContextData);
 
 const OrderProvider: React.FC = ({ children }) => {
-  const [ingredients, setIngredients] = useState<string[]>([]);
-  const [dough, setDough] = useState('');
-  const [size, setSize] = useState('');
-
-  const order = useMemo<Order>(() => ({ ingredients, dough, size }), [
-    dough,
-    ingredients,
-    size,
-  ]);
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  const [dough, setDough] = useState<Dough>({} as Dough);
+  const [size, setSize] = useState<Size>({} as Size);
 
   return (
     <OrderContext.Provider
@@ -36,7 +39,6 @@ const OrderProvider: React.FC = ({ children }) => {
         ingredients,
         dough,
         size,
-        order,
         setIngredients,
         setDough,
         setSize,

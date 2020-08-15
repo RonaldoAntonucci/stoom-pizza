@@ -4,20 +4,32 @@ import { Link } from 'react-router-dom';
 import useOrder from '../../hooks/useOrder';
 
 const Confirmation: React.FC = () => {
-  const { order } = useOrder();
+  const { dough, ingredients, size } = useOrder();
 
-  const ingredientsInline = useMemo(() => order.ingredients.join(', '), [
-    order.ingredients,
-  ]);
+  console.log(ingredients);
+
+  const ingredientsInline = useMemo(() => {
+    if (!ingredients) {
+      return '';
+    }
+
+    let ingredientsStr = '';
+    ingredients.forEach((ingredient, index) => {
+      ingredientsStr +=
+        index === ingredients.length - 1
+          ? `${ingredient.name}.`
+          : `${ingredient.name}, `;
+    });
+
+    return ingredientsStr;
+  }, [ingredients]);
 
   return (
     <div>
       <h1>Confirme seu pedido</h1>
-
-      <p>massa: {order.dough}</p>
-      <p>tamanho: {order.size}</p>
+      <p>massa: {dough.name}</p>
+      <p>tamanho: {size.name}</p>
       <p>ingredientes: {ingredientsInline}</p>
-
       <Link to="/doughs">Início</Link>
     </div>
   );

@@ -50,10 +50,21 @@ const Ingredients: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
-      setIngredients(data.ingredients);
+      const ingredientNames = apiIngredients.map(
+        (ingredient) => ingredient.name,
+      );
+
+      const selectedIngredients = data.ingredients.map(
+        (ingredientName: string) => {
+          const ingredientIndex = ingredientNames.indexOf(ingredientName);
+          return apiIngredients[ingredientIndex];
+        },
+      );
+
+      setIngredients(selectedIngredients);
       push('/size');
     },
-    [push, setIngredients],
+    [apiIngredients, push, setIngredients],
   );
 
   return (

@@ -50,10 +50,13 @@ const Size: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
-      setSize(data.sizes[0]);
+      const selectedSize = apiSizes
+        .map((size) => size.name)
+        .indexOf(data.sizes[0]);
+      setSize(apiSizes[selectedSize]);
       push('/confirmation');
     },
-    [push, setSize],
+    [push, setSize, apiSizes],
   );
 
   return (

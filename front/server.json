@@ -36,6 +36,22 @@
     {
       "id": 5,
       "name": "champignon"
+    },
+    {
+      "id": 6,
+      "name": "peito de peru"
+    },
+    {
+      "id": 7,
+      "name": "palmito"
+    },
+    {
+      "id": 8,
+      "name": "parmesão"
+    },
+    {
+      "id": 9,
+      "name": "orégano"
     }
   ],
   "sizes": [
@@ -69,5 +85,34 @@
       "name": "Gigante",
       "description": "16 fatias (45cm)"
     }
-  ]
+  ],
+  "recommendation": {
+    "name": "Pizza Napolitana",
+    "dough": {
+      "id": 3,
+      "name": "Napolitana"
+    },
+    "ingredients": [
+      {
+        "id": 1,
+        "name": "mussarela"
+      },
+      {
+        "id": 6,
+        "name": "peito de peru"
+      },
+      {
+        "id": 7,
+        "name": "palmito"
+      },
+      {
+        "id": 8,
+        "name": "parmesão"
+      },
+      {
+        "id": 9,
+        "name": "orégano"
+      }
+    ]
+  }
 }
