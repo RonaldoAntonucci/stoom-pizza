@@ -51,7 +51,7 @@ const Size: React.FC = () => {
   const handleNext = useCallback(
     (data) => {
       setSize(data.sizes[0]);
-      push('/doughs');
+      push('/confirmation');
     },
     [push, setSize],
   );
