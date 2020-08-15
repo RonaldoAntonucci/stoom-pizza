@@ -1,0 +1,24 @@
+{
+  "ingredients": [
+    {
+      "id": 1,
+      "name": "mussarela"
+    },
+    {
+      "id": 2,
+      "name": "presunto"
+    },
+    {
+      "id": 3,
+      "name": "bacon"
+    },
+    {
+      "id": 4,
+      "name": "calabresa"
+    },
+    {
+      "id": 5,
+      "name": "champignon"
+    }
+  ]
+}
