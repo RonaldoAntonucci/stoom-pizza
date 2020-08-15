@@ -28,7 +28,7 @@ interface CheckboxOption {
 
 const Size: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { setIngredients } = useOrder();
+  const { setSize } = useOrder();
   const { push } = useHistory();
 
   const [apiSizes, setApiSizes] = useState<Size[]>([]);
@@ -50,17 +50,17 @@ const Size: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
-      setIngredients(data.sizes[0]);
-      push('/ingredients');
+      setSize(data.sizes[0]);
+      push('/doughs');
     },
-    [push, setIngredients],
+    [push, setSize],
   );
 
   return (
     <div>
       <Form ref={formRef} onSubmit={handleNext}>
         <CheckboxInput
-          name="doughs"
+          name="sizes"
           options={checkboxSizesOptions}
           multiple={false}
         />

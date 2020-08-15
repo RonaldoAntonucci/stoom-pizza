@@ -28,7 +28,7 @@ interface CheckboxOption {
 
 const Dough: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { setIngredients } = useOrder();
+  const { setDough } = useOrder();
   const { push } = useHistory();
 
   const [apiDoughs, setApiDoughs] = useState<Dough[]>([]);
@@ -50,10 +50,10 @@ const Dough: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
-      setIngredients(data.doughs[0]);
+      setDough(data.doughs[0]);
       push('/ingredients');
     },
-    [push, setIngredients],
+    [push, setDough],
   );
 
   return (
