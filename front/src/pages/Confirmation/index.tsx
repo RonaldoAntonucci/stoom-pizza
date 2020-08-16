@@ -6,8 +6,9 @@ import api from '../../services/api';
 import useToast from '../../hooks/useToast';
 
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
-import { Container, Card, Footer } from './styles';
+import { Container, Card } from './styles';
 
 const Confirmation: React.FC = () => {
   const { push } = useHistory();

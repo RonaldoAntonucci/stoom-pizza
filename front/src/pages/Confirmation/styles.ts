@@ -57,10 +57,3 @@ export const Card = styled.div`
     }
   }
 `;
-
-export const Footer = styled.div`
-  margin-top: 24px;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-`;

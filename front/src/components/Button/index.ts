@@ -5,7 +5,7 @@ import colors from '../../styles/colors';
 
 interface ButtonProps {
   align?: 'start' | 'end';
-  color?: 'red' | 'green';
+  color?: 'red' | 'green' | 'neutral';
   disabled?: boolean;
 }
 
@@ -16,6 +16,10 @@ export default styled.button<ButtonProps>`
     let color =
       props.color && props.color === 'red' ? colors.error : colors.success;
 
+    if (props.color === 'neutral') {
+      color = colors.neutral;
+    }
+
     if (props.disabled) {
       color = 'grey';
     }
@@ -23,7 +27,8 @@ export default styled.button<ButtonProps>`
     return color;
   }};
 
-  color: ${colors.neutral};
+  color: ${(props) =>
+    props.color === 'neutral' ? colors.background : colors.neutral};
   font-weight: bold;
   border-radius: 8px;
   font-size: 18px;
@@ -37,8 +42,12 @@ export default styled.button<ButtonProps>`
 
   &:hover {
   background-color: ${(props) => {
-    const color =
+    let color =
       props.color && props.color === 'red' ? colors.error : colors.success;
+
+    if (props.color === 'neutral') {
+      color = colors.neutral;
+    }
 
     if (props.disabled) {
       return 'grey';

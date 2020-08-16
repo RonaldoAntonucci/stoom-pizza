@@ -11,12 +11,13 @@ import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
+import useToast from '../../hooks/useToast';
 
 import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
 import { Container } from './styles';
-import useToast from '../../hooks/useToast';
 
 interface Size {
   id: string;
@@ -95,9 +96,19 @@ const Size: React.FC = () => {
           multiple={false}
         />
       </Form>
-      <Button type="button" onClick={() => formRef.current?.submitForm()}>
-        Selecionar
-      </Button>
+      <Footer>
+        <Button
+          type="button"
+          align="start"
+          color="neutral"
+          onClick={() => push('/ingredients')}
+        >
+          Voltar
+        </Button>
+        <Button type="button" onClick={() => formRef.current?.submitForm()}>
+          Selecionar
+        </Button>
+      </Footer>
     </Container>
   );
 };

@@ -14,6 +14,7 @@ import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
 import { Container } from './styles';
 import useToast from '../../hooks/useToast';
@@ -103,9 +104,19 @@ const Ingredients: React.FC = () => {
           options={checkboxIngredientsOptions}
         />
       </Form>
-      <Button type="button" onClick={() => formRef.current?.submitForm()}>
-        Selecionar
-      </Button>
+      <Footer>
+        <Button
+          type="button"
+          align="start"
+          color="neutral"
+          onClick={() => push('/doughs')}
+        >
+          Voltar
+        </Button>
+        <Button type="button" onClick={() => formRef.current?.submitForm()}>
+          Selecionar
+        </Button>
+      </Footer>
     </Container>
   );
 };
