@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
+import formatPrice from '../../utils/formatValue';
 
 import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
@@ -22,6 +23,7 @@ import useToast from '../../hooks/useToast';
 interface Ingredient {
   id: string;
   name: string;
+  price: number;
 }
 
 interface CheckboxOption {
@@ -66,7 +68,7 @@ const Ingredients: React.FC = () => {
       apiIngredients.map((ingredient) => ({
         id: ingredient.id,
         value: ingredient.name,
-        label: ingredient.name,
+        label: `${ingredient.name} - ${formatPrice(ingredient.price)}`,
       })),
     [apiIngredients],
   );

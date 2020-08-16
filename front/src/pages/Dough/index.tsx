@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
+import formatPrice from '../../utils/formatValue';
 
 import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
@@ -23,6 +24,7 @@ interface Dough {
   name: string;
   description: string;
   imageUrl: string;
+  price: number;
 }
 
 interface CheckboxOption {
@@ -38,10 +40,11 @@ interface Recommendation {
   dough: {
     id: string;
     name: string;
+    price: number;
   };
   imageUrl: string;
   points: number;
-  ingredients: [{ id: string; name: string }];
+  ingredients: [{ id: string; name: string; price: number }];
 }
 
 const Dough: React.FC = () => {
@@ -96,7 +99,7 @@ const Dough: React.FC = () => {
       apiDoughs.map((doughData) => ({
         id: doughData.id,
         value: doughData.name,
-        label: doughData.name,
+        label: `${doughData.name} - ${formatPrice(doughData.price)}`,
         description: doughData.description,
         image: doughData.imageUrl,
       })),

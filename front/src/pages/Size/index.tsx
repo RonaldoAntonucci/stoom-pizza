@@ -10,6 +10,7 @@ import { Form } from '@unform/web';
 import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
+import formatPrice from '../../utils/formatValue';
 import useOrder from '../../hooks/useOrder';
 import useToast from '../../hooks/useToast';
 
@@ -23,6 +24,7 @@ interface Size {
   id: string;
   name: string;
   description: string;
+  price: number;
 }
 
 interface CheckboxOption {
@@ -59,7 +61,7 @@ const Size: React.FC = () => {
       apiSizes.map((sizeData) => ({
         id: sizeData.id,
         value: sizeData.name,
-        label: sizeData.name,
+        label: `${sizeData.name} - ${formatPrice(sizeData.price)}`,
         description: sizeData.description,
       })),
     [apiSizes],

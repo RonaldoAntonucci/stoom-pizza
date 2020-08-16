@@ -9,17 +9,20 @@ import React, {
 interface Ingredient {
   id: string;
   name: string;
+  price: number;
 }
 
 interface Dough {
   id: string;
   name: string;
+  price: number;
 }
 
 interface Size {
   id: string;
   name: string;
   description: string;
+  price: number;
 }
 
 export interface OrderContextData {
