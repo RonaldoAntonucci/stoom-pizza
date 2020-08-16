@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
 import { Container, BallContent, Ball, Label, Bar } from './styles';
@@ -91,4 +91,4 @@ const Steps: React.FC = () => {
   );
 };
 
-export default Steps;
+export default memo(Steps);
