@@ -14,6 +14,8 @@ import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
 
+import { Container } from './styles';
+
 interface Dough {
   id: string;
   name: string;
@@ -118,7 +120,7 @@ const Dough: React.FC = () => {
   ]);
 
   return (
-    <div>
+    <Container>
       {recommendation && (
         <div>
           <h1>Pizza do dia</h1>
@@ -146,7 +148,7 @@ const Dough: React.FC = () => {
         />
         <button type="submit">Continuar</button>
       </Form>
-    </div>
+    </Container>
   );
 };
 

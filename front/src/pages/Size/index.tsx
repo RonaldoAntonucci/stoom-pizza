@@ -14,6 +14,8 @@ import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
 
+import { Container } from './styles';
+
 interface Size {
   id: string;
   name: string;
@@ -60,7 +62,7 @@ const Size: React.FC = () => {
   );
 
   return (
-    <div>
+    <Container>
       <Form ref={formRef} onSubmit={handleNext}>
         <CheckboxInput
           name="sizes"
@@ -69,7 +71,7 @@ const Size: React.FC = () => {
         />
         <button type="submit">Continuar</button>
       </Form>
-    </div>
+    </Container>
   );
 };
 

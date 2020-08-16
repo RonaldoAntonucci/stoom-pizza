@@ -5,6 +5,8 @@ import useOrder from '../../hooks/useOrder';
 import api from '../../services/api';
 import useToast from '../../hooks/useToast';
 
+import { Container } from './styles';
+
 const Confirmation: React.FC = () => {
   const { push } = useHistory();
 
@@ -48,7 +50,7 @@ const Confirmation: React.FC = () => {
   }, [addToast, dough, ingredients, push, size]);
 
   return (
-    <div>
+    <Container>
       <h1>Confirme seu pedido</h1>
       <p>massa: {dough.name}</p>
       <p>tamanho: {size.name}</p>
@@ -62,7 +64,7 @@ const Confirmation: React.FC = () => {
       <button type="button" onClick={handleConfirmation}>
         Confirmar
       </button>
-    </div>
+    </Container>
   );
 };
 

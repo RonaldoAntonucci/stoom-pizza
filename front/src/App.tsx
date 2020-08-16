@@ -13,6 +13,7 @@ const App: React.FC = () => (
     <div
       style={{
         maxWidth: 1280,
+        width: '100vh',
       }}
     >
       <AppProvider>

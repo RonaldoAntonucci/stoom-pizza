@@ -14,6 +14,8 @@ import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
 
+import { Container } from './styles';
+
 interface Ingredient {
   id: string;
   name: string;
@@ -71,7 +73,7 @@ const Ingredients: React.FC = () => {
   );
 
   return (
-    <div>
+    <Container>
       <Form ref={formRef} onSubmit={handleNext}>
         <CheckboxInput
           name="ingredients"
@@ -79,7 +81,7 @@ const Ingredients: React.FC = () => {
         />
         <button type="submit">Continuar</button>
       </Form>
-    </div>
+    </Container>
   );
 };
 

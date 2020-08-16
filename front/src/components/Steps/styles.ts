@@ -2,9 +2,13 @@ import styled from 'styled-components';
 
 import colors from '../../styles/colors';
 
-interface BallAndBarProps {
+interface BallProps {
   complete: boolean;
   selected: boolean;
+}
+
+interface BarProps {
+  complete: boolean;
 }
 
 export const Container = styled.div`
@@ -20,7 +24,7 @@ export const BallContent = styled.button`
   display: flex;
   flex-direction: column;
   height: 100px;
-  background: none;
+  background: transparent;
   border: 0;
 
   justify-content: center;
@@ -28,7 +32,7 @@ export const BallContent = styled.button`
   overflow: visible;
 `;
 
-export const Ball = styled.div<BallAndBarProps>`
+export const Ball = styled.div<BallProps>`
   height: 30px;
   width: 30px;
   background-color: ${(props) => {
@@ -49,10 +53,16 @@ export const Label = styled.label`
   margin-top: 16px;
 `;
 
-export const Bar = styled.div`
-  height: 2px;
+export const Bar = styled.div<BarProps>`
+  height: 4px;
   flex: 1;
-  background-color: blue;
+  border: 0.1px solid;
+  border-radius: 4px;
+  background-color: ${(props) =>
+    props.complete ? colors.success : 'transparent'};
+
+  border-color: ${(props) =>
+    props.complete ? colors.success : colors.neutral};
 
   margin-bottom: 35px;
 `;
