@@ -3,16 +3,23 @@ import { shade } from 'polished';
 
 import colors from '../../styles/colors';
 
-export default styled.button`
+interface ButtonProps {
+  align?: 'start' | 'end';
+  color?: 'red' | 'green';
+}
+
+export default styled.button<ButtonProps>`
   padding: 8px;
   border: 0;
-  background-color: ${colors.success};
+  background-color: ${(props) =>
+    props.color && props.color === 'red' ? colors.error : colors.success};
   color: ${colors.neutral};
   font-weight: bold;
   border-radius: 8px;
   font-size: 18px;
 
-  align-self: flex-end;
+  align-self: ${(props) =>
+    props.align && props.align === 'start' ? 'flex-start' : 'flex-end'};
   width: fit-content;
 
   &:hover {

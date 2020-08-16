@@ -34,3 +34,9 @@ export const Card = styled.div`
   border-radius: 8px;
   border: 2px solid ${colors.title};
 `;
+
+export const Footer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;

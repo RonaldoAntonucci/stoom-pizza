@@ -7,7 +7,7 @@ import useToast from '../../hooks/useToast';
 
 import Button from '../../components/Button';
 
-import { Container, Card } from './styles';
+import { Container, Card, Footer } from './styles';
 
 const Confirmation: React.FC = () => {
   const { push } = useHistory();
@@ -59,6 +59,11 @@ const Confirmation: React.FC = () => {
     });
   }, [addToast, clearOrder, dough, ingredients, push, size]);
 
+  const handleCancel = useCallback(() => {
+    clearOrder();
+    push('/');
+  }, [clearOrder, push]);
+
   return (
     <Container>
       <Card>
@@ -77,12 +82,17 @@ const Confirmation: React.FC = () => {
         </p>
 
         {dailyRecommendation && (
-          <b>Confirmando o pedido você ganhará {points}!!</b>
+          <b>Confirmando o pedido você ganhará {points} pontos!!</b>
         )}
       </Card>
-      <Button type="button" onClick={handleConfirmation}>
-        Confirmar pedido
-      </Button>
+      <Footer>
+        <Button type="button" onClick={handleCancel} align="start" color="red">
+          Cancelar pedido
+        </Button>
+        <Button type="button" onClick={handleConfirmation}>
+          Confirmar pedido
+        </Button>
+      </Footer>
     </Container>
   );
 };
