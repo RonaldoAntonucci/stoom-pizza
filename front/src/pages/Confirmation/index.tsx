@@ -20,6 +20,7 @@ const Confirmation: React.FC = () => {
     points,
     clearOrder,
     isComplete,
+    imageUrl,
   } = useOrder();
   const { addToast } = useToast();
 
@@ -95,6 +96,11 @@ const Confirmation: React.FC = () => {
     <Container>
       <Card>
         <h1>Confirme seu pedido</h1>
+
+        <div>
+          <img src={imageUrl} alt="confirme sua pizza" />
+        </div>
+
         <p>
           <b>massa: </b>
           {dough.name}

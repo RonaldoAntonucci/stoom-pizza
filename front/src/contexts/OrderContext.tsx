@@ -20,6 +20,7 @@ export interface OrderContextData {
   ingredients: Ingredient[];
   dough: Dough;
   size: Size;
+  imageUrl: string;
 
   dailyRecommendation: boolean;
   points: number;
@@ -31,6 +32,7 @@ export interface OrderContextData {
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
   setSize(size: Size): void;
+  setImageUrl(image: string): void;
   setDailyRecommendation(value: boolean): void;
   setPoints(points: number): void;
   clearOrder(): void;
@@ -42,6 +44,7 @@ const OrderProvider: React.FC = ({ children }) => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [dough, setDough] = useState<Dough>({} as Dough);
   const [size, setSize] = useState<Size>({} as Size);
+  const [imageUrl, setImageUrl] = useState('');
   const [dailyRecommendation, setDailyRecommendation] = useState(false);
   const [points, setPoints] = useState<number>(0);
 
@@ -49,6 +52,7 @@ const OrderProvider: React.FC = ({ children }) => {
     setIngredients([]);
     setDough({} as Dough);
     setSize({} as Size);
+    setImageUrl('');
     setDailyRecommendation(false);
     setPoints(0);
   }, []);
@@ -90,6 +94,7 @@ const OrderProvider: React.FC = ({ children }) => {
         ingredients,
         dough,
         size,
+        imageUrl,
         dailyRecommendation,
         points,
         isComplete,
@@ -98,6 +103,7 @@ const OrderProvider: React.FC = ({ children }) => {
         setIngredients,
         setDough,
         setSize,
+        setImageUrl,
         setDailyRecommendation,
         setPoints,
         clearOrder,

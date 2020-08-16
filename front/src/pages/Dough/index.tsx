@@ -52,6 +52,7 @@ const Dough: React.FC = () => {
     setIngredients,
     setDailyRecommendation,
     setPoints,
+    setImageUrl,
   } = useOrder();
   const { push } = useHistory();
   const { addToast } = useToast();
@@ -132,15 +133,17 @@ const Dough: React.FC = () => {
         .map((dough) => dough.name)
         .indexOf(data.doughs[0]);
       setDough(apiDoughs[selectedDough]);
+      setImageUrl(apiDoughs[selectedDough].imageUrl);
       push('/ingredients');
     },
-    [apiDoughs, setDough, push, addToast],
+    [apiDoughs, setDough, setImageUrl, push, addToast],
   );
 
   const handleSelectRecommendation = useCallback(() => {
     if (recommendation) {
       setDough(recommendation.dough);
       setIngredients(recommendation.ingredients);
+      setImageUrl(recommendation.imageUrl);
       setDailyRecommendation(true);
       setPoints(recommendation.points);
 
@@ -150,6 +153,7 @@ const Dough: React.FC = () => {
     recommendation,
     setDough,
     setIngredients,
+    setImageUrl,
     setDailyRecommendation,
     setPoints,
     push,
