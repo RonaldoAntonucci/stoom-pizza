@@ -195,6 +195,8 @@ const Dough: React.FC = () => {
         </RecommendationContainer>
       )}
 
+      <h1>Selecione um tipo de massa:</h1>
+
       <Form ref={formRef} onSubmit={handleNext}>
         <CheckboxInput
           name="doughs"

@@ -12,6 +12,12 @@ export const Container = styled.div`
   b {
     color: ${colors.success};
   }
+
+  h1 {
+    color: ${colors.title};
+    margin-bottom: 16px;
+    font-size: 40px;
+  }
 `;
 
 export const RecommendationContainer = styled.div`

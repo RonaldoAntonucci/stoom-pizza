@@ -90,11 +90,13 @@ const Ingredients: React.FC = () => {
       setIngredients(selectedIngredients);
       push('/size');
     },
-    [apiIngredients, push, setIngredients],
+    [addToast, apiIngredients, push, setIngredients],
   );
 
   return (
     <Container>
+      <h1>Selecione os ingredientes:</h1>
+
       <Form ref={formRef} onSubmit={handleNext}>
         <CheckboxInput
           name="ingredients"

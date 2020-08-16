@@ -102,15 +102,15 @@ const Confirmation: React.FC = () => {
         </div>
 
         <p>
-          <b>massa: </b>
+          <b>Massa: </b>
           {dough.name}
         </p>
         <p>
-          <b>tamanho: </b>
+          <b>Tamanho: </b>
           {size.name}
         </p>
         <p>
-          <b>ingredientes: </b>
+          <b>Ingredientes: </b>
           {ingredientsInline}
         </p>
 

@@ -86,6 +86,8 @@ const Size: React.FC = () => {
 
   return (
     <Container>
+      <h1>Selecione o tamanho:</h1>
+
       <Form ref={formRef} onSubmit={handleNext}>
         <CheckboxInput
           name="sizes"
