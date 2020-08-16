@@ -16,6 +16,7 @@ import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
 
 import { Container } from './styles';
+import useToast from '../../hooks/useToast';
 
 interface Ingredient {
   id: string;
@@ -30,8 +31,10 @@ interface CheckboxOption {
 
 const Ingredients: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const { setIngredients, setDailyRecommendation, setPoints } = useOrder();
   const { push } = useHistory();
+  const { addToast } = useToast();
 
   const [apiIngredients, setApiIngredients] = useState<Ingredient[]>([]);
 
@@ -57,6 +60,11 @@ const Ingredients: React.FC = () => {
   const handleNext = useCallback(
     (data) => {
       if (data.ingredients.length < 1) {
+        addToast({
+          title: 'Selecione os ingredientes',
+          description: 'Por favor, selecione os ingredientes para continuar',
+          type: 'error',
+        });
         return;
       }
 

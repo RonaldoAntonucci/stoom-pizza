@@ -41,6 +41,12 @@ const Confirmation: React.FC = () => {
 
   const handleConfirmation = useCallback(() => {
     if (!isComplete) {
+      addToast({
+        title: 'Pizza Incompleta',
+        description:
+          'Complete os ingredientes de sua pizza para confirmar o pedido.',
+        type: 'error',
+      });
       return;
     }
 

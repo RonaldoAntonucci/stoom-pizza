@@ -16,6 +16,7 @@ import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
 
 import { Container, RecommendationContainer } from './styles';
+import useToast from '../../hooks/useToast';
 
 interface Dough {
   id: string;
@@ -41,6 +42,7 @@ interface Recommendation {
 
 const Dough: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const {
     setDough,
     setIngredients,
@@ -48,6 +50,7 @@ const Dough: React.FC = () => {
     setPoints,
   } = useOrder();
   const { push } = useHistory();
+  const { addToast } = useToast();
 
   const [apiDoughs, setApiDoughs] = useState<Dough[]>([]);
   const [recommendation, setRecommendation] = useState<Recommendation | null>(
@@ -94,6 +97,11 @@ const Dough: React.FC = () => {
   const handleNext = useCallback(
     (data) => {
       if (data.doughs.length < 1) {
+        addToast({
+          title: 'Selecione a massa',
+          description: 'Por favor, selecione a massa para continuar',
+          type: 'error',
+        });
         return;
       }
 
@@ -103,7 +111,7 @@ const Dough: React.FC = () => {
       setDough(apiDoughs[selectedDough]);
       push('/ingredients');
     },
-    [apiDoughs, setDough, push],
+    [apiDoughs, setDough, push, addToast],
   );
 
   const handleSelectRecommendation = useCallback(() => {

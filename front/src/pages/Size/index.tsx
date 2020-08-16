@@ -16,6 +16,7 @@ import CheckboxInput from '../../components/CheckboxInput';
 import Button from '../../components/Button';
 
 import { Container } from './styles';
+import useToast from '../../hooks/useToast';
 
 interface Size {
   id: string;
@@ -31,8 +32,10 @@ interface CheckboxOption {
 
 const Size: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const { setSize } = useOrder();
   const { push } = useHistory();
+  const { addToast } = useToast();
 
   const [apiSizes, setApiSizes] = useState<Size[]>([]);
 
@@ -54,6 +57,11 @@ const Size: React.FC = () => {
   const handleNext = useCallback(
     (data) => {
       if (data.sizes.length < 1) {
+        addToast({
+          title: 'Selecione o tamanho',
+          description: 'Por favor, selecione o tamanho para continuar',
+          type: 'error',
+        });
         return;
       }
 
@@ -63,7 +71,7 @@ const Size: React.FC = () => {
       setSize(apiSizes[selectedSize]);
       push('/confirmation');
     },
-    [push, setSize, apiSizes],
+    [apiSizes, setSize, push, addToast],
   );
 
   return (
