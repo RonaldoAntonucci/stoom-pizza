@@ -47,32 +47,36 @@ const CheckboxInput: React.FC<Props> = ({
   return (
     <Container>
       {options.map((option, index) => (
-        <Label htmlFor={option.id} key={option.id}>
-          <input
-            defaultChecked={defaultValue.find((dv: string) => dv === option.id)}
-            ref={(ref) => {
-              inputRefs.current[index] = ref as HTMLInputElement;
-            }}
-            value={option.value}
-            type="checkbox"
-            id={option.id}
-            onChange={() => {
-              if (!multiple) {
-                inputRefs.current.forEach((input, refIndex) => {
-                  if (refIndex !== index) {
-                    input.checked = false;
-                  }
-                });
-              }
-            }}
-            {...rest}
-          />
+        <div>
+          <Label htmlFor={option.id} key={option.id}>
+            <input
+              defaultChecked={defaultValue.find(
+                (dv: string) => dv === option.id,
+              )}
+              ref={(ref) => {
+                inputRefs.current[index] = ref as HTMLInputElement;
+              }}
+              value={option.value}
+              type="checkbox"
+              id={option.id}
+              onChange={() => {
+                if (!multiple) {
+                  inputRefs.current.forEach((input, refIndex) => {
+                    if (refIndex !== index) {
+                      input.checked = false;
+                    }
+                  });
+                }
+              }}
+              {...rest}
+            />
 
-          <InputContent>
-            {option.label}
-            {option.description && <p>{option.description}</p>}
-          </InputContent>
-        </Label>
+            <InputContent>
+              <h2>{option.label}</h2>
+            </InputContent>
+          </Label>
+          {option.description && <p>{option.description}</p>}
+        </div>
       ))}
     </Container>
   );
