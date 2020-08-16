@@ -53,6 +53,7 @@ const Dough: React.FC = () => {
     setDailyRecommendation,
     setPoints,
     setImageUrl,
+    getDough,
   } = useOrder();
   const { push } = useHistory();
   const { addToast } = useToast();
@@ -197,11 +198,12 @@ const Dough: React.FC = () => {
 
       <h1>Selecione um tipo de massa:</h1>
 
-      <Form ref={formRef} onSubmit={handleNext}>
+      <Form ref={formRef} onSubmit={handleNext} defaultValue={['1']}>
         <CheckboxInput
           name="doughs"
           options={checkboxDoughsOptions}
           multiple={false}
+          initialValue={[getDough()?.id || '']}
         />
       </Form>
       <Button type="button" onClick={() => formRef.current?.submitForm()}>

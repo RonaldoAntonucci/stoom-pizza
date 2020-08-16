@@ -11,6 +11,7 @@ import { Container, Label, InputContent, DescriptionContent } from './styles';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  initialValue?: string[];
   options: {
     id: string;
     value: string;
@@ -24,6 +25,7 @@ const CheckboxInput: React.FC<Props> = ({
   name,
   options,
   multiple = true,
+  initialValue = [],
   ...rest
 }) => {
   const inputRefs = useRef<HTMLInputElement[]>([]);
@@ -70,9 +72,9 @@ const CheckboxInput: React.FC<Props> = ({
         <div key={option.id}>
           <Label htmlFor={option.id}>
             <input
-              defaultChecked={defaultValue.find(
-                (dv: string) => dv === option.id,
-              )}
+              defaultChecked={
+                !!initialValue.find((dv: string) => dv === option.id)
+              }
               ref={(ref) => {
                 inputRefs.current[index] = ref as HTMLInputElement;
               }}

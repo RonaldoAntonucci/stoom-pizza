@@ -29,6 +29,8 @@ export interface OrderContextData {
   isDoughComplete: boolean;
   isIngredientsComplete: boolean;
 
+  getDough(): Dough | null;
+
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
   setSize(size: Size): void;
@@ -41,6 +43,8 @@ export interface OrderContextData {
 const OrderContext = createContext<OrderContextData>({} as OrderContextData);
 
 const OrderProvider: React.FC = ({ children }) => {
+  const key = '@StoomPizza';
+
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [dough, setDough] = useState<Dough>({} as Dough);
   const [size, setSize] = useState<Size>({} as Size);
@@ -88,6 +92,17 @@ const OrderProvider: React.FC = ({ children }) => {
     return false;
   }, [dough, ingredients]);
 
+  const persistDough = useCallback((doughData: Dough) => {
+    localStorage.setItem(`${key}:dough`, JSON.stringify(doughData));
+    setDough(doughData);
+  }, []);
+
+  const getDough = useCallback((): Dough | null => {
+    const persistedDough = localStorage.getItem(`${key}:dough`);
+
+    return persistedDough ? JSON.parse(persistedDough) : null;
+  }, []);
+
   return (
     <OrderContext.Provider
       value={{
@@ -100,8 +115,9 @@ const OrderProvider: React.FC = ({ children }) => {
         isComplete,
         isDoughComplete,
         isIngredientsComplete,
+        getDough,
         setIngredients,
-        setDough,
+        setDough: persistDough,
         setSize,
         setImageUrl,
         setDailyRecommendation,
