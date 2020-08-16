@@ -30,6 +30,7 @@ export interface OrderContextData {
   isIngredientsComplete: boolean;
 
   getDough(): Dough | null;
+  getIngredients(): Ingredient[] | null;
 
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
@@ -97,10 +98,21 @@ const OrderProvider: React.FC = ({ children }) => {
     setDough(doughData);
   }, []);
 
+  const persistIngredients = useCallback((ingredientsData: Ingredient[]) => {
+    localStorage.setItem(`${key}:ingredients`, JSON.stringify(ingredientsData));
+    setIngredients(ingredientsData);
+  }, []);
+
   const getDough = useCallback((): Dough | null => {
     const persistedDough = localStorage.getItem(`${key}:dough`);
 
     return persistedDough ? JSON.parse(persistedDough) : null;
+  }, []);
+
+  const getIngredients = useCallback((): Ingredient[] | null => {
+    const persistedIngredients = localStorage.getItem(`${key}:ingredients`);
+
+    return persistedIngredients ? JSON.parse(persistedIngredients) : null;
   }, []);
 
   return (
@@ -116,7 +128,8 @@ const OrderProvider: React.FC = ({ children }) => {
         isDoughComplete,
         isIngredientsComplete,
         getDough,
-        setIngredients,
+        getIngredients,
+        setIngredients: persistIngredients,
         setDough: persistDough,
         setSize,
         setImageUrl,

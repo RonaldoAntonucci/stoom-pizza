@@ -33,7 +33,12 @@ interface CheckboxOption {
 const Ingredients: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { setIngredients, setDailyRecommendation, setPoints } = useOrder();
+  const {
+    setIngredients,
+    setDailyRecommendation,
+    setPoints,
+    getIngredients,
+  } = useOrder();
   const { push } = useHistory();
   const { addToast } = useToast();
 
@@ -102,6 +107,7 @@ const Ingredients: React.FC = () => {
         <CheckboxInput
           name="ingredients"
           options={checkboxIngredientsOptions}
+          initialValue={getIngredients()?.map((ingred) => ingred.id) || []}
         />
       </Form>
       <Footer>
