@@ -13,6 +13,7 @@ import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
+import Button from '../../components/Button';
 
 import { Container } from './styles';
 
@@ -69,8 +70,10 @@ const Size: React.FC = () => {
           options={checkboxSizesOptions}
           multiple={false}
         />
-        <button type="submit">Continuar</button>
       </Form>
+      <Button type="button" onClick={() => formRef.current?.submitForm()}>
+        Selecionar
+      </Button>
     </Container>
   );
 };

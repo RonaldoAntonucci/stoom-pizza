@@ -13,6 +13,7 @@ import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
+import Button from '../../components/Button';
 
 import { Container, RecommendationContainer } from './styles';
 
@@ -155,8 +156,10 @@ const Dough: React.FC = () => {
           options={checkboxDoughsOptions}
           multiple={false}
         />
-        <button type="submit">Continuar</button>
       </Form>
+      <Button type="button" onClick={() => formRef.current?.submitForm()}>
+        Selecionar
+      </Button>
     </Container>
   );
 };

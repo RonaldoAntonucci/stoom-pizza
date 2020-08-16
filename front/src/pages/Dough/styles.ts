@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+import { lighten, shade } from 'polished';
 
 import colors from '../../styles/colors';
 
 export const Container = styled.div`
   padding: 40px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 
   b {
     color: ${colors.success};
@@ -12,6 +16,7 @@ export const Container = styled.div`
 
 export const RecommendationContainer = styled.div`
   margin-bottom: 40px;
+  background-color: ${lighten(0.02, colors.background)};
 
   h1 {
     color: ${colors.success};
@@ -39,5 +44,9 @@ export const RecommendationContainer = styled.div`
 
     font-weight: bold;
     font-size: 18px;
+
+    &:hover {
+      color: ${shade(0.2, colors.success)};
+    }
   }
 `;
