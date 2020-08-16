@@ -36,6 +36,7 @@ interface Recommendation {
     id: string;
     name: string;
   };
+  imageUrl: string;
   points: number;
   ingredients: [{ id: string; name: string }];
 }
@@ -156,23 +157,29 @@ const Dough: React.FC = () => {
         <RecommendationContainer>
           <h1>Pizza do dia</h1>
 
-          <p>
-            <b>Nome: </b>
-            {recommendation.name}
-          </p>
-          <p>
-            <b>Massa: </b>
-            {recommendation.dough.name}
-          </p>
-          <p>
-            <b>Ingredientes: </b>
-            {recommendationIngredients}
-          </p>
+          <div>
+            <img src={recommendation.imageUrl} alt={recommendation.name} />
 
-          <p>
-            Ganhe <b>{recommendation.points} pontos</b> ao concluir o seu
-            pedido!!
-          </p>
+            <div>
+              <p>
+                <b>Nome: </b>
+                {recommendation.name}
+              </p>
+              <p>
+                <b>Massa: </b>
+                {recommendation.dough.name}
+              </p>
+              <p>
+                <b>Ingredientes: </b>
+                {recommendationIngredients}
+              </p>
+
+              <p>
+                Ganhe <b>{recommendation.points} pontos</b> ao concluir o seu
+                pedido!!
+              </p>
+            </div>
+          </div>
 
           <button onClick={handleSelectRecommendation} type="button">
             Aproveitar!!

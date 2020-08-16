@@ -15,7 +15,7 @@ const App: React.FC = () => (
       style={{
         maxWidth: 1280,
         width: '100vh',
-        background: colors.background
+        background: colors.background,
       }}
     >
       <AppProvider>

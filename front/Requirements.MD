@@ -11,9 +11,9 @@ passo de escolher tamanho, passo de escolher recheio...);
 
 [x] - A recomendação deve vir de um backend;
 
-[ ] - A informação referente a pontos deve vir do backend;
+[x] - A informação referente a pontos deve vir do backend;
 
-[ ] - A informação de que o usuário recebeu os pontos, vem processada do backend;
+[x] - A informação de que o usuário recebeu os pontos, vem processada do backend;
 
 -- Diretrizes
 

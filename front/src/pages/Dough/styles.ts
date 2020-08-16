@@ -18,6 +18,38 @@ export const RecommendationContainer = styled.div`
   margin-bottom: 40px;
   background-color: ${lighten(0.02, colors.background)};
 
+  border: 3px solid ${colors.success};
+  border-radius: 8px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 186px;
+    height: 186px;
+    border-radius: 50%;
+  }
+
+  > div {
+    display: flex;
+    width: 100%;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: ${colors.background};
+    border-radius: 8px;
+    padding: 30px;
+
+    div {
+      margin-left: 24px;
+    }
+
+    margin-bottom: 24px;
+  }
+
   h1 {
     color: ${colors.success};
     margin-bottom: 16px;
@@ -29,10 +61,6 @@ export const RecommendationContainer = styled.div`
     font-size: 18px;
     margin-bottom: 8px;
   }
-
-  border: 3px solid ${colors.success};
-  border-radius: 8px;
-  padding: 20px;
 
   button {
     height: 48px;
@@ -50,3 +78,5 @@ export const RecommendationContainer = styled.div`
     }
   }
 `;
+
+export const ImgContainer = styled.div``;
