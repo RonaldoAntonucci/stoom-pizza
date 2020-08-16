@@ -12,6 +12,10 @@ export default createGlobalStyle`
     background: #312e38;
     color: #fff;
     -webkit-font-smoothing: antialiased;
+
+    display: flex;
+    flex: 1;
+    justify-content: center;
   }
 
   body, -moz-user-input, button {
