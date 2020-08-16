@@ -1,4 +1,10 @@
-import React, { createContext, useState, useCallback, useMemo } from 'react';
+import React, {
+  useEffect,
+  createContext,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 
 interface Ingredient {
   id: string;
@@ -31,6 +37,7 @@ export interface OrderContextData {
 
   getDough(): Dough | null;
   getIngredients(): Ingredient[] | null;
+  getSize(): Size | null;
 
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
@@ -53,6 +60,35 @@ const OrderProvider: React.FC = ({ children }) => {
   const [dailyRecommendation, setDailyRecommendation] = useState(false);
   const [points, setPoints] = useState<number>(0);
 
+  useEffect(() => {
+    const persistedDough = localStorage.getItem(`${key}:dough`);
+
+    persistedDough && setDough(JSON.parse(persistedDough));
+
+    const persistedIngredients = localStorage.getItem(`${key}:ingredients`);
+
+    persistedIngredients && setIngredients(JSON.parse(persistedIngredients));
+
+    const persistedSize = localStorage.getItem(`${key}:size`);
+
+    persistedSize && setSize(JSON.parse(persistedSize));
+
+    const persistedImageUrl = localStorage.getItem(`${key}:image`);
+
+    persistedImageUrl && setImageUrl(JSON.parse(persistedImageUrl));
+
+    const persistedDailyRecommendation = localStorage.getItem(
+      `${key}:recommendation`,
+    );
+
+    persistedDailyRecommendation &&
+      setDailyRecommendation(JSON.parse(persistedDailyRecommendation));
+
+    const persistedPoints = localStorage.getItem(`${key}:points`);
+
+    persistedPoints && setPoints(JSON.parse(persistedPoints));
+  }, []);
+
   const clearOrder = useCallback(() => {
     setIngredients([]);
     setDough({} as Dough);
@@ -60,6 +96,13 @@ const OrderProvider: React.FC = ({ children }) => {
     setImageUrl('');
     setDailyRecommendation(false);
     setPoints(0);
+
+    localStorage.removeItem(`${key}:ingredients`);
+    localStorage.removeItem(`${key}:dough`);
+    localStorage.removeItem(`${key}:size`);
+    localStorage.removeItem(`${key}:image`);
+    localStorage.removeItem(`${key}:recommendation`);
+    localStorage.removeItem(`${key}:points`);
   }, []);
 
   const isComplete: boolean = useMemo(() => {
@@ -103,6 +146,26 @@ const OrderProvider: React.FC = ({ children }) => {
     setIngredients(ingredientsData);
   }, []);
 
+  const persistSize = useCallback((sizeData: Size) => {
+    localStorage.setItem(`${key}:size`, JSON.stringify(sizeData));
+    setSize(sizeData);
+  }, []);
+
+  const persistDailyRecommendation = useCallback((daily: boolean) => {
+    localStorage.setItem(`${key}:recommendation`, JSON.stringify(daily));
+    setDailyRecommendation(daily);
+  }, []);
+
+  const persistImageUrl = useCallback((img: string) => {
+    localStorage.setItem(`${key}:image`, JSON.stringify(img));
+    setImageUrl(img);
+  }, []);
+
+  const persistPoints = useCallback((pts: number) => {
+    localStorage.setItem(`${key}:points`, JSON.stringify(pts));
+    setPoints(pts);
+  }, []);
+
   const getDough = useCallback((): Dough | null => {
     const persistedDough = localStorage.getItem(`${key}:dough`);
 
@@ -113,6 +176,12 @@ const OrderProvider: React.FC = ({ children }) => {
     const persistedIngredients = localStorage.getItem(`${key}:ingredients`);
 
     return persistedIngredients ? JSON.parse(persistedIngredients) : null;
+  }, []);
+
+  const getSize = useCallback((): Size | null => {
+    const persistedSize = localStorage.getItem(`${key}:size`);
+
+    return persistedSize ? JSON.parse(persistedSize) : null;
   }, []);
 
   return (
@@ -129,12 +198,13 @@ const OrderProvider: React.FC = ({ children }) => {
         isIngredientsComplete,
         getDough,
         getIngredients,
+        getSize,
         setIngredients: persistIngredients,
         setDough: persistDough,
-        setSize,
-        setImageUrl,
-        setDailyRecommendation,
-        setPoints,
+        setSize: persistSize,
+        setImageUrl: persistImageUrl,
+        setDailyRecommendation: persistDailyRecommendation,
+        setPoints: persistPoints,
         clearOrder,
       }}
     >

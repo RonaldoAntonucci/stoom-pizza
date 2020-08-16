@@ -34,7 +34,7 @@ interface CheckboxOption {
 const Size: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { setSize } = useOrder();
+  const { setSize, size } = useOrder();
   const { push } = useHistory();
   const { addToast } = useToast();
 
@@ -56,11 +56,11 @@ const Size: React.FC = () => {
 
   const checkboxSizesOptions = useMemo<CheckboxOption[]>(
     () =>
-      apiSizes.map((size) => ({
-        id: size.id,
-        value: size.name,
-        label: size.name,
-        description: size.description,
+      apiSizes.map((sizeData) => ({
+        id: sizeData.id,
+        value: sizeData.name,
+        label: sizeData.name,
+        description: sizeData.description,
       })),
     [apiSizes],
   );
@@ -77,7 +77,7 @@ const Size: React.FC = () => {
       }
 
       const selectedSize = apiSizes
-        .map((size) => size.name)
+        .map((sizeData) => sizeData.name)
         .indexOf(data.sizes[0]);
       setSize(apiSizes[selectedSize]);
       push('/confirmation');
@@ -94,6 +94,7 @@ const Size: React.FC = () => {
           name="sizes"
           options={checkboxSizesOptions}
           multiple={false}
+          initialValue={[size?.id || '']}
         />
       </Form>
       <Footer>

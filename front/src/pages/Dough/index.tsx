@@ -48,12 +48,12 @@ const Dough: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const {
+    dough,
     setDough,
     setIngredients,
     setDailyRecommendation,
     setPoints,
     setImageUrl,
-    getDough,
   } = useOrder();
   const { push } = useHistory();
   const { addToast } = useToast();
@@ -93,12 +93,12 @@ const Dough: React.FC = () => {
 
   const checkboxDoughsOptions = useMemo<CheckboxOption[]>(
     () =>
-      apiDoughs.map((dough) => ({
-        id: dough.id,
-        value: dough.name,
-        label: dough.name,
-        description: dough.description,
-        image: dough.imageUrl,
+      apiDoughs.map((doughData) => ({
+        id: doughData.id,
+        value: doughData.name,
+        label: doughData.name,
+        description: doughData.description,
+        image: doughData.imageUrl,
       })),
     [apiDoughs],
   );
@@ -131,7 +131,7 @@ const Dough: React.FC = () => {
       }
 
       const selectedDough = apiDoughs
-        .map((dough) => dough.name)
+        .map((doughData) => doughData.name)
         .indexOf(data.doughs[0]);
       setDough(apiDoughs[selectedDough]);
       setImageUrl(apiDoughs[selectedDough].imageUrl);
@@ -203,7 +203,7 @@ const Dough: React.FC = () => {
           name="doughs"
           options={checkboxDoughsOptions}
           multiple={false}
-          initialValue={[getDough()?.id || '']}
+          initialValue={[dough?.id || '']}
         />
       </Form>
       <Button type="button" onClick={() => formRef.current?.submitForm()}>

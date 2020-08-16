@@ -37,7 +37,7 @@ const Ingredients: React.FC = () => {
     setIngredients,
     setDailyRecommendation,
     setPoints,
-    getIngredients,
+    ingredients,
   } = useOrder();
   const { push } = useHistory();
   const { addToast } = useToast();
@@ -107,7 +107,7 @@ const Ingredients: React.FC = () => {
         <CheckboxInput
           name="ingredients"
           options={checkboxIngredientsOptions}
-          initialValue={getIngredients()?.map((ingred) => ingred.id) || []}
+          initialValue={ingredients?.map((ingred) => ingred.id) || []}
         />
       </Form>
       <Footer>
