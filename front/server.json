@@ -4,17 +4,20 @@
       "id": 1,
       "name": "Nova-Iorquina",
       "imageUrl": "https://www.daninoce.com.br/wp-content/uploads/2018/01/pizza-no-estilo-nova-iorquino-historia-onde-comer-dani-noce-destaque-960x625.jpg",
+      "price": 10.00,
       "description": "Frequentemente vendida em fatias grandes e largas, a pizza ao estilo de Nova York tem uma massa mais grossa e é levemente crocante por fora. Dessa forma, são consumidas sem talheres. É bastante comum que as fatias sejam dobradas, facilitando o consumo por parte dos clientes."
     },
     {
       "id": 2,
       "name": "Siciliana",
       "imageUrl": "https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2012/07/Pizza_sicilianooo.jpg",
+      "price": 12.00,
       "description": "A pizza siciliana é conhecida por sua massa grossa em forma de retângulo, geralmente com mais de um centímetro de espessura. A saber, pode ser feita em qualquer formato de assadeira untada com azeite, o que a deixa bem crocante no fundo.  Se você gosta da pizza tradicional da Sicília, a farinha de rosca fica por cima dos ingredientes. Além disso, ainda existe a opção de ralar um queijo para finalizar o perfil de sabor."
     },
     {
       "id": 3,
       "name": "Napolitana",
+      "price": 14.00,
       "imageUrl": "https://bellamais.correiodopovo.com.br/image/policy:1.350375:1562690689/Pizza-Cinque-358.jpeg?f=2x1&$p$f=53970fa&w=720&$w=3b33d2d",
       "description": "O modo napolitano de preparo é considerado um Patrimônio Cultural Imaterial da Humanidade pela Unesco. Acima de tudo,  a massa napolitana deve atender a um conjunto muito específico. Seu sabor e textura únicos, precisam ser assados em um forno a lenha com cúpula. Além disso,  a massa deve ser amassada à mão, com no máximo 35 centímetros de diâmetro e no máximo um terço de centímetro de espessura. Os estilos clássicos incluem a Margherita e a Marinara. E devido ao sabor e textura é a opção perfeita para quem quer saborear uma pizza italiana autêntica."
     }
@@ -22,71 +25,86 @@
   "ingredients": [
     {
       "id": 1,
-      "name": "mussarela"
+      "name": "mussarela",
+      "price": 4.00
     },
     {
       "id": 2,
-      "name": "presunto"
+      "name": "presunto",
+      "price": 4.00
     },
     {
       "id": 3,
-      "name": "bacon"
+      "name": "bacon",
+      "price": 4.00
     },
     {
       "id": 4,
-      "name": "calabresa"
+      "name": "calabresa",
+      "price": 4.00
     },
     {
       "id": 5,
-      "name": "champignon"
+      "name": "champignon",
+      "price": 4.50
     },
     {
       "id": 6,
-      "name": "peito de peru"
+      "name": "peito de peru",
+      "price": 6.00
     },
     {
       "id": 7,
-      "name": "palmito"
+      "name": "palmito",
+      "price": 4.00
     },
     {
       "id": 8,
-      "name": "parmesão"
+      "name": "parmesão",
+      "price": 5.00
     },
     {
       "id": 9,
-      "name": "orégano"
+      "name": "orégano",
+      "price": 4.00
     }
   ],
   "sizes": [
     {
       "id": 1,
       "name": "Brotinho",
-      "description": "4 fatias (20cm)"
+      "description": "4 fatias (20cm)",
+      "price": 10.00
     },
     {
       "id": 2,
       "name": "Pequena",
-      "description": "6 fatias (25cm)"
+      "description": "6 fatias (25cm)",
+      "price": 15.00
     },
     {
       "id": 3,
       "name": "Média",
-      "description": "8 fatias (30cm)"
+      "description": "8 fatias (30cm)",
+      "price": 20.00
     },
     {
       "id": 4,
       "name": "Grande",
-      "description": "10 fatias (35cm)"
+      "description": "10 fatias (35cm)",
+      "price": 25.00
     },
     {
       "id": 5,
       "name": "Família",
-      "description": "12 fatias (40cm)"
+      "description": "12 fatias (40cm)",
+      "price": 30.00
     },
     {
       "id": 6,
       "name": "Gigante",
-      "description": "16 fatias (45cm)"
+      "description": "16 fatias (45cm)",
+      "price": 35.00
     }
   ],
   "recommendation": {
