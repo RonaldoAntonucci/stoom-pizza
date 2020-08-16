@@ -3,11 +3,13 @@ import { Link, useHistory } from 'react-router-dom';
 
 import useOrder from '../../hooks/useOrder';
 import api from '../../services/api';
+import useToast from '../../hooks/useToast';
 
 const Confirmation: React.FC = () => {
   const { push } = useHistory();
 
   const { dough, ingredients, size, dailyRecommendation, points } = useOrder();
+  const { addToast } = useToast();
 
   const ingredientsInline = useMemo(() => {
     if (!ingredients) {
@@ -26,8 +28,24 @@ const Confirmation: React.FC = () => {
   }, [ingredients]);
 
   const handleConfirmation = useCallback(() => {
-    api.post('/order', { dough, size, ingredients }).then(() => push('/'));
-  }, [dough, ingredients, push, size]);
+    api.post('/order', { dough, size, ingredients }).then((response) => {
+      addToast({
+        type: 'success',
+        title: 'Pedido confirmado',
+        description: 'Seu pedido foi confirmado.',
+      });
+
+      if (response.data.dailyRecommendation) {
+        addToast({
+          type: 'success',
+          title: 'Novos pontos adicionados',
+          description: `Parabéns!! Vocẽ fez nosso pedido do dia e ganhou ${response.data.points} novos pontos bônus!`,
+        });
+      }
+
+      push('/');
+    });
+  }, [addToast, dough, ingredients, push, size]);
 
   return (
     <div>

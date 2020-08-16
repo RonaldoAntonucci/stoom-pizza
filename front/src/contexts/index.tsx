@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { OrderProvider } from './OrderContext';
+import { ToastProvider } from './ToastContext';
 
 const AppProvider: React.FC = ({ children }) => (
-  <OrderProvider>{children}</OrderProvider>
+  <OrderProvider>
+    <ToastProvider>{children}</ToastProvider>
+  </OrderProvider>
 );
 
 export default AppProvider;
