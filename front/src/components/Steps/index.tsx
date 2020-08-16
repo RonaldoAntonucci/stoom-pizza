@@ -1,13 +1,44 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
 import { Container, BallContent, Ball, Label, Bar } from './styles';
 import useOrder from '../../hooks/useOrder';
 
 const Steps: React.FC = () => {
-  const { dough, ingredients, size } = useOrder();
+  const {
+    dough,
+    ingredients,
+    size,
+    isIngredientsComplete,
+    isDoughComplete,
+    isComplete,
+  } = useOrder();
   const { pathname } = useLocation();
   const { push } = useHistory();
+
+  const handleClickIngredients = useCallback(() => {
+    if (!isDoughComplete) {
+      return;
+    }
+
+    push('/ingredients');
+  }, [isDoughComplete, push]);
+
+  const handleClickSizes = useCallback(() => {
+    if (!isIngredientsComplete) {
+      return;
+    }
+
+    push('/size');
+  }, [isIngredientsComplete, push]);
+
+  const handleClickConfirmation = useCallback(() => {
+    if (!isComplete) {
+      return;
+    }
+
+    push('/confirmation');
+  }, [isComplete, push]);
 
   return (
     <Container>
@@ -26,7 +57,7 @@ const Steps: React.FC = () => {
       <Bar complete={!!dough.id} />
       <BallContent
         type="button"
-        onClick={() => push('/ingredients')}
+        onClick={handleClickIngredients}
         selected={pathname === '/ingredients'}
         complete={ingredients.length > 0}
       >
@@ -37,12 +68,22 @@ const Steps: React.FC = () => {
         <Label>Ingredientes</Label>
       </BallContent>
       <Bar complete={!!dough.id && ingredients.length > 0} />
-      <BallContent type="button" onClick={() => push('/size')} selected={pathname === '/size'} complete={!!size.id}>
+      <BallContent
+        type="button"
+        onClick={handleClickSizes}
+        selected={pathname === '/size'}
+        complete={!!size.id}
+      >
         <Ball selected={pathname === '/size'} complete={!!size.id} />
         <Label>Tamanho</Label>
       </BallContent>
       <Bar complete={!!dough.id && ingredients.length > 0 && !!size.id} />
-      <BallContent type="button" onClick={() => push('/confirmation')} selected={pathname === '/confirmation'} complete={false}>
+      <BallContent
+        type="button"
+        onClick={handleClickConfirmation}
+        selected={pathname === '/confirmation'}
+        complete={false}
+      >
         <Ball selected={pathname === '/confirmation'} complete={false} />
         <Label>Confirmar</Label>
       </BallContent>
