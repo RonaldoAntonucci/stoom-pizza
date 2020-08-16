@@ -40,8 +40,29 @@ export const InputContent = styled.div`
     font-weight: bold;
     font-size: 24px;
   }
+`;
+
+export const DescriptionContent = styled.div`
+  display: flex;
+  align-items: center;
+
+  background-color: ${lighten(0.04, colors.background)};
+  padding: 20px;
+  border-radius: 8px;
+
+  img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+
+    border: 2px solid ${colors.title};
+  }
 
   p {
     font-size: 18px;
+  }
+
+  img + p {
+    margin-left: 20px;
   }
 `;

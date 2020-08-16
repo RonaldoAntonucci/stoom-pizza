@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { useField } from '@unform/core';
 
-import { Container, Label, InputContent } from './styles';
+import { Container, Label, InputContent, DescriptionContent } from './styles';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -16,6 +16,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     value: string;
     label: string;
     description?: string;
+    image?: string;
   }[];
 }
 
@@ -86,7 +87,14 @@ const CheckboxInput: React.FC<Props> = ({
               <h2>{option.label}</h2>
             </InputContent>
           </Label>
-          {option.description && <p>{option.description}</p>}
+
+          {(option.image || option.description) && (
+            <DescriptionContent>
+              {option.image && <img src={option.image} alt={option.label} />}
+
+              {option.description && <p>{option.description}</p>}
+            </DescriptionContent>
+          )}
         </div>
       ))}
     </Container>

@@ -3,16 +3,19 @@
     {
       "id": 1,
       "name": "Nova-Iorquina",
+      "imageUrl": "https://www.daninoce.com.br/wp-content/uploads/2018/01/pizza-no-estilo-nova-iorquino-historia-onde-comer-dani-noce-destaque-960x625.jpg",
       "description": "Frequentemente vendida em fatias grandes e largas, a pizza ao estilo de Nova York tem uma massa mais grossa e é levemente crocante por fora. Dessa forma, são consumidas sem talheres. É bastante comum que as fatias sejam dobradas, facilitando o consumo por parte dos clientes."
     },
     {
       "id": 2,
       "name": "Siciliana",
+      "imageUrl": "https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2012/07/Pizza_sicilianooo.jpg",
       "description": "A pizza siciliana é conhecida por sua massa grossa em forma de retângulo, geralmente com mais de um centímetro de espessura. A saber, pode ser feita em qualquer formato de assadeira untada com azeite, o que a deixa bem crocante no fundo.  Se você gosta da pizza tradicional da Sicília, a farinha de rosca fica por cima dos ingredientes. Além disso, ainda existe a opção de ralar um queijo para finalizar o perfil de sabor."
     },
     {
       "id": 3,
       "name": "Napolitana",
+      "imageUrl": "https://bellamais.correiodopovo.com.br/image/policy:1.350375:1562690689/Pizza-Cinque-358.jpeg?f=2x1&$p$f=53970fa&w=720&$w=3b33d2d",
       "description": "O modo napolitano de preparo é considerado um Patrimônio Cultural Imaterial da Humanidade pela Unesco. Acima de tudo,  a massa napolitana deve atender a um conjunto muito específico. Seu sabor e textura únicos, precisam ser assados em um forno a lenha com cúpula. Além disso,  a massa deve ser amassada à mão, com no máximo 35 centímetros de diâmetro e no máximo um terço de centímetro de espessura. Os estilos clássicos incluem a Margherita e a Marinara. E devido ao sabor e textura é a opção perfeita para quem quer saborear uma pizza italiana autêntica."
     }
   ],

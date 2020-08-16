@@ -22,12 +22,15 @@ interface Dough {
   id: string;
   name: string;
   description: string;
+  imageUrl: string;
 }
 
 interface CheckboxOption {
   id: string;
   value: string;
   label: string;
+  description: string;
+  image: string;
 }
 
 interface Recommendation {
@@ -93,6 +96,7 @@ const Dough: React.FC = () => {
         value: dough.name,
         label: dough.name,
         description: dough.description,
+        image: dough.imageUrl,
       })),
     [apiDoughs],
   );
