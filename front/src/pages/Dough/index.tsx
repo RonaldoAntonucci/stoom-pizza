@@ -14,7 +14,7 @@ import useOrder from '../../hooks/useOrder';
 
 import CheckboxInput from '../../components/CheckboxInput';
 
-import { Container } from './styles';
+import { Container, RecommendationContainer } from './styles';
 
 interface Dough {
   id: string;
@@ -122,12 +122,21 @@ const Dough: React.FC = () => {
   return (
     <Container>
       {recommendation && (
-        <div>
+        <RecommendationContainer>
           <h1>Pizza do dia</h1>
 
-          <p>Nome: {recommendation.name}</p>
-          <p>Massa: {recommendation.dough.name}</p>
-          <p>Ingredientes: {recommendationIngredients}</p>
+          <p>
+            <b>Nome: </b>
+            {recommendation.name}
+          </p>
+          <p>
+            <b>Massa: </b>
+            {recommendation.dough.name}
+          </p>
+          <p>
+            <b>Ingredientes: </b>
+            {recommendationIngredients}
+          </p>
 
           <p>
             Ganhe <b>{recommendation.points} pontos</b> ao concluir o seu
@@ -135,9 +144,9 @@ const Dough: React.FC = () => {
           </p>
 
           <button onClick={handleSelectRecommendation} type="button">
-            Selecionar
+            Aproveitar!!
           </button>
-        </div>
+        </RecommendationContainer>
       )}
 
       <Form ref={formRef} onSubmit={handleNext}>
