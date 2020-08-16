@@ -4,4 +4,5 @@ export default {
   neutral: '#e6fffa',
 
   title: '#ff9000',
+  background: '#312e38'
 };

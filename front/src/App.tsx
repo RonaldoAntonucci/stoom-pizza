@@ -7,6 +7,7 @@ import AppProvider from './contexts';
 
 import Routes from './routes';
 import Steps from './components/Steps';
+import colors from './styles/colors';
 
 const App: React.FC = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const App: React.FC = () => (
       style={{
         maxWidth: 1280,
         width: '100vh',
+        background: colors.background
       }}
     >
       <AppProvider>
