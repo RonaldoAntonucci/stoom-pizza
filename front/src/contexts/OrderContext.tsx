@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 
 interface Ingredient {
   id: string;
@@ -29,6 +29,7 @@ export interface OrderContextData {
   setSize(size: Size): void;
   setDailyRecommendation(value: boolean): void;
   setPoints(points: number): void;
+  clearOrder(): void;
 }
 
 const OrderContext = createContext<OrderContextData>({} as OrderContextData);
@@ -39,6 +40,14 @@ const OrderProvider: React.FC = ({ children }) => {
   const [size, setSize] = useState<Size>({} as Size);
   const [dailyRecommendation, setDailyRecommendation] = useState(false);
   const [points, setPoints] = useState<number>(0);
+
+  const clearOrder = useCallback(() => {
+    setIngredients([]);
+    setDough({} as Dough)
+    setSize({} as Size)
+    setDailyRecommendation(false)
+    setPoints(0)
+  }, [])
 
   return (
     <OrderContext.Provider
@@ -53,6 +62,7 @@ const OrderProvider: React.FC = ({ children }) => {
         setSize,
         setDailyRecommendation,
         setPoints,
+        clearOrder
       }}
     >
       {children}

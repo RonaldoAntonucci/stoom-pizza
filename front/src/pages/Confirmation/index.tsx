@@ -10,7 +10,7 @@ import { Container } from './styles';
 const Confirmation: React.FC = () => {
   const { push } = useHistory();
 
-  const { dough, ingredients, size, dailyRecommendation, points } = useOrder();
+  const { dough, ingredients, size, dailyRecommendation, points, clearOrder } = useOrder();
   const { addToast } = useToast();
 
   const ingredientsInline = useMemo(() => {
@@ -45,9 +45,10 @@ const Confirmation: React.FC = () => {
         });
       }
 
+      clearOrder()
       push('/');
     });
-  }, [addToast, dough, ingredients, push, size]);
+  }, [addToast, clearOrder, dough, ingredients, push, size]);
 
   return (
     <Container>
@@ -60,7 +61,7 @@ const Confirmation: React.FC = () => {
         <b>Confirmando o pedido você ganhará {points}!!</b>
       )}
 
-      <Link to="/doughs">Início</Link>
+      <Link to="/doughs" onClick={() => clearOrder()}>Início</Link>
       <button type="button" onClick={handleConfirmation}>
         Confirmar
       </button>
