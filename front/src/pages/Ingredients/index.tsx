@@ -56,6 +56,10 @@ const Ingredients: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
+      if (data.ingredients.length < 1) {
+        return;
+      }
+
       const ingredientNames = apiIngredients.map(
         (ingredient) => ingredient.name,
       );

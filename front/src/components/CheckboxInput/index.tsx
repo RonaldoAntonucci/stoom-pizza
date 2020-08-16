@@ -1,5 +1,10 @@
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useRef, InputHTMLAttributes } from 'react';
+import React, {
+  useEffect,
+  useRef,
+  InputHTMLAttributes,
+  useCallback,
+} from 'react';
 import { useField } from '@unform/core';
 
 import { Container, Label, InputContent } from './styles';
@@ -44,6 +49,20 @@ const CheckboxInput: React.FC<Props> = ({
       },
     });
   }, [defaultValue, fieldName, registerField]);
+
+  const handleChange = useCallback(
+    (index) => {
+      if (!multiple) {
+        inputRefs.current.forEach((input, refIndex) => {
+          if (refIndex !== index) {
+            input.checked = false;
+          }
+        });
+      }
+    },
+    [multiple],
+  );
+
   return (
     <Container>
       {options.map((option, index) => (
@@ -59,15 +78,7 @@ const CheckboxInput: React.FC<Props> = ({
               value={option.value}
               type="checkbox"
               id={option.id}
-              onChange={() => {
-                if (!multiple) {
-                  inputRefs.current.forEach((input, refIndex) => {
-                    if (refIndex !== index) {
-                      input.checked = false;
-                    }
-                  });
-                }
-              }}
+              onChange={() => handleChange(index)}
               {...rest}
             />
 

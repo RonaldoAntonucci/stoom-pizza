@@ -93,13 +93,17 @@ const Dough: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
+      if (data.doughs.length < 1) {
+        return;
+      }
+
       const selectedDough = apiDoughs
         .map((dough) => dough.name)
         .indexOf(data.doughs[0]);
       setDough(apiDoughs[selectedDough]);
       push('/ingredients');
     },
-    [push, setDough, apiDoughs],
+    [apiDoughs, setDough, push],
   );
 
   const handleSelectRecommendation = useCallback(() => {

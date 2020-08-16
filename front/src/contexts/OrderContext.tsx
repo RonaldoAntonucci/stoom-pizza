@@ -25,6 +25,8 @@ export interface OrderContextData {
   points: number;
 
   isComplete: boolean;
+  isDoughComplete: boolean;
+  isIngredientsComplete: boolean;
 
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
@@ -66,6 +68,22 @@ const OrderProvider: React.FC = ({ children }) => {
     return false;
   }, [dough, ingredients, size]);
 
+  const isDoughComplete = useMemo(() => {
+    if (dough && dough.id) {
+      return true;
+    }
+
+    return false;
+  }, [dough]);
+
+  const isIngredientsComplete = useMemo(() => {
+    if (dough && dough.id && ingredients && ingredients.length > 0) {
+      return true;
+    }
+
+    return false;
+  }, [dough, ingredients]);
+
   return (
     <OrderContext.Provider
       value={{
@@ -75,6 +93,8 @@ const OrderProvider: React.FC = ({ children }) => {
         dailyRecommendation,
         points,
         isComplete,
+        isDoughComplete,
+        isIngredientsComplete,
         setIngredients,
         setDough,
         setSize,

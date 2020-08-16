@@ -53,6 +53,10 @@ const Size: React.FC = () => {
 
   const handleNext = useCallback(
     (data) => {
+      if (data.sizes.length < 1) {
+        return;
+      }
+
       const selectedSize = apiSizes
         .map((size) => size.name)
         .indexOf(data.sizes[0]);
