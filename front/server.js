@@ -10,7 +10,6 @@ server.use(jsonServer.bodyParser)
 server.use(middlewares)
 
 server.use('/order', (req, res) => {
-  console.log(req.body)
 
   let isDaily = true;
 
