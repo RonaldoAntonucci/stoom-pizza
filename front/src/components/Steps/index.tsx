@@ -11,7 +11,12 @@ const Steps: React.FC = () => {
 
   return (
     <Container>
-      <BallContent type="button" onClick={() => push('/')}>
+      <BallContent
+        type="button"
+        onClick={() => push('/')}
+        selected={pathname === '/' || pathname === '/doughs'}
+        complete={!!dough.id}
+      >
         <Ball
           selected={pathname === '/' || pathname === '/doughs'}
           complete={!!dough.id}
@@ -19,7 +24,12 @@ const Steps: React.FC = () => {
         <Label>Massas</Label>
       </BallContent>
       <Bar complete={!!dough.id} />
-      <BallContent type="button" onClick={() => push('/ingredients')}>
+      <BallContent
+        type="button"
+        onClick={() => push('/ingredients')}
+        selected={pathname === '/ingredients'}
+        complete={ingredients.length > 0}
+      >
         <Ball
           selected={pathname === '/ingredients'}
           complete={ingredients.length > 0}
@@ -27,12 +37,12 @@ const Steps: React.FC = () => {
         <Label>Ingredientes</Label>
       </BallContent>
       <Bar complete={!!dough.id && ingredients.length > 0} />
-      <BallContent type="button" onClick={() => push('/size')}>
+      <BallContent type="button" onClick={() => push('/size')} selected={pathname === '/size'} complete={!!size.id}>
         <Ball selected={pathname === '/size'} complete={!!size.id} />
         <Label>Tamanho</Label>
       </BallContent>
       <Bar complete={!!dough.id && ingredients.length > 0 && !!size.id} />
-      <BallContent type="button" onClick={() => push('/confirmation')}>
+      <BallContent type="button" onClick={() => push('/confirmation')} selected={pathname === '/confirmation'} complete={false}>
         <Ball selected={pathname === '/confirmation'} complete={false} />
         <Label>Confirmar</Label>
       </BallContent>

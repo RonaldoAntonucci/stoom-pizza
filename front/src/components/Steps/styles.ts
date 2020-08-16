@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 import colors from '../../styles/colors';
 
@@ -20,7 +21,7 @@ export const Container = styled.div`
   padding: 20px;
 `;
 
-export const BallContent = styled.button`
+export const BallContent = styled.button<BallProps>`
   display: flex;
   flex-direction: column;
   height: 100px;
@@ -29,7 +30,16 @@ export const BallContent = styled.button`
 
   justify-content: center;
   align-items: center;
-  overflow: visible;
+  text-decoration: none;
+
+  color: ${(props) => {
+    if (props.selected) {
+      return colors.neutral;
+    }
+
+    return props.complete ? colors.success : colors.neutral;
+  }};;
+  font-weight: bold;
 `;
 
 export const Ball = styled.div<BallProps>`
@@ -40,16 +50,38 @@ export const Ball = styled.div<BallProps>`
       return colors.neutral;
     }
 
-    return props.complete ? colors.success : colors.error;
+    return props.complete ? colors.success : colors.neutral;
   }};
   margin: 0;
   border-radius: 50%;
-  border: 0;
+  border: 2px solid ${(props) => {
+    if (props.selected) {
+      return shade(0.2, colors.neutral);
+    }
+
+    return props.complete ? shade(0.2, colors.success) : shade(0.2, colors.neutral);
+  }};
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: ${(props) => {
+    let color = colors.neutral;
+
+    if (props.complete) {
+      color = colors.success;
+    }
+
+    if (props.selected) {
+      color = colors.neutral;
+    }
+
+    return shade(0.2, color);
+  }};
+  }
 `;
 
 export const Label = styled.label`
-  position: relative;
-
   margin-top: 16px;
 `;
 
@@ -62,7 +94,7 @@ export const Bar = styled.div<BarProps>`
     props.complete ? colors.success : 'transparent'};
 
   border-color: ${(props) =>
-    props.complete ? colors.success : colors.neutral};
+    props.complete ? shade(0.2, colors.success) : shade(0.2, colors.neutral)};
 
   margin-bottom: 35px;
 `;
