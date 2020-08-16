@@ -19,6 +19,7 @@ const Confirmation: React.FC = () => {
     dailyRecommendation,
     points,
     clearOrder,
+    isComplete,
   } = useOrder();
   const { addToast } = useToast();
 
@@ -39,6 +40,10 @@ const Confirmation: React.FC = () => {
   }, [ingredients]);
 
   const handleConfirmation = useCallback(() => {
+    if (!isComplete) {
+      return;
+    }
+
     api.post('/order', { dough, size, ingredients }).then((response) => {
       addToast({
         type: 'success',
@@ -57,7 +62,7 @@ const Confirmation: React.FC = () => {
       clearOrder();
       push('/');
     });
-  }, [addToast, clearOrder, dough, ingredients, push, size]);
+  }, [addToast, clearOrder, dough, ingredients, isComplete, push, size]);
 
   const handleCancel = useCallback(() => {
     clearOrder();
@@ -89,7 +94,11 @@ const Confirmation: React.FC = () => {
         <Button type="button" onClick={handleCancel} align="start" color="red">
           Cancelar pedido
         </Button>
-        <Button type="button" onClick={handleConfirmation}>
+        <Button
+          disabled={!isComplete}
+          type="button"
+          onClick={handleConfirmation}
+        >
           Confirmar pedido
         </Button>
       </Footer>

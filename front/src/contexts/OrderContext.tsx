@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from 'react';
+import React, { createContext, useState, useCallback, useMemo } from 'react';
 
 interface Ingredient {
   id: string;
@@ -24,6 +24,8 @@ export interface OrderContextData {
   dailyRecommendation: boolean;
   points: number;
 
+  isComplete: boolean;
+
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
   setSize(size: Size): void;
@@ -43,11 +45,26 @@ const OrderProvider: React.FC = ({ children }) => {
 
   const clearOrder = useCallback(() => {
     setIngredients([]);
-    setDough({} as Dough)
-    setSize({} as Size)
-    setDailyRecommendation(false)
-    setPoints(0)
-  }, [])
+    setDough({} as Dough);
+    setSize({} as Size);
+    setDailyRecommendation(false);
+    setPoints(0);
+  }, []);
+
+  const isComplete: boolean = useMemo(() => {
+    if (
+      dough &&
+      dough.id &&
+      ingredients &&
+      ingredients.length > 0 &&
+      size &&
+      size.id
+    ) {
+      return true;
+    }
+
+    return false;
+  }, [dough, ingredients, size]);
 
   return (
     <OrderContext.Provider
@@ -57,12 +74,13 @@ const OrderProvider: React.FC = ({ children }) => {
         size,
         dailyRecommendation,
         points,
+        isComplete,
         setIngredients,
         setDough,
         setSize,
         setDailyRecommendation,
         setPoints,
-        clearOrder
+        clearOrder,
       }}
     >
       {children}
