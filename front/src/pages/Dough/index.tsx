@@ -60,12 +60,30 @@ const Dough: React.FC = () => {
   useEffect(() => {
     setDailyRecommendation(false);
     setPoints(0);
-    api.get<Dough[]>('/doughs').then((response) => setApiDoughs(response.data));
+    api
+      .get<Dough[]>('/doughs')
+      .then((response) => setApiDoughs(response.data))
+      .catch(() => {
+        addToast({
+          title: 'Ocorreu um erro',
+          type: 'error',
+          description:
+            'Desculpe, ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.',
+        });
+      });
 
     api
       .get<Recommendation>('/recommendation')
-      .then((response) => setRecommendation(response.data));
-  }, [setDailyRecommendation, setPoints]);
+      .then((response) => setRecommendation(response.data))
+      .catch(() => {
+        addToast({
+          title: 'Ocorreu um erro',
+          type: 'error',
+          description:
+            'Desculpe, ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.',
+        });
+      });
+  }, [addToast, setDailyRecommendation, setPoints]);
 
   const checkboxDoughsOptions = useMemo<CheckboxOption[]>(
     () =>

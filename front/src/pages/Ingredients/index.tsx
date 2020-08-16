@@ -44,8 +44,16 @@ const Ingredients: React.FC = () => {
 
     api
       .get<Ingredient[]>('/ingredients')
-      .then((response) => setApiIngredients(response.data));
-  }, [setDailyRecommendation, setPoints]);
+      .then((response) => setApiIngredients(response.data))
+      .catch(() => {
+        addToast({
+          title: 'Ocorreu um erro',
+          type: 'error',
+          description:
+            'Desculpe, ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.',
+        });
+      });
+  }, [addToast, setDailyRecommendation, setPoints]);
 
   const checkboxIngredientsOptions = useMemo<CheckboxOption[]>(
     () =>

@@ -40,8 +40,18 @@ const Size: React.FC = () => {
   const [apiSizes, setApiSizes] = useState<Size[]>([]);
 
   useEffect(() => {
-    api.get<Size[]>('/sizes').then((response) => setApiSizes(response.data));
-  }, []);
+    api
+      .get<Size[]>('/sizes')
+      .then((response) => setApiSizes(response.data))
+      .catch(() => {
+        addToast({
+          title: 'Ocorreu um erro',
+          type: 'error',
+          description:
+            'Desculpe, ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.',
+        });
+      });
+  }, [addToast]);
 
   const checkboxSizesOptions = useMemo<CheckboxOption[]>(
     () =>

@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useOrder from '../../hooks/useOrder';
@@ -22,6 +22,12 @@ const Confirmation: React.FC = () => {
     isComplete,
   } = useOrder();
   const { addToast } = useToast();
+
+  useEffect(() => {
+    if (!isComplete) {
+      push('/');
+    }
+  }, [isComplete, push]);
 
   const ingredientsInline = useMemo(() => {
     if (!ingredients) {
@@ -50,24 +56,34 @@ const Confirmation: React.FC = () => {
       return;
     }
 
-    api.post('/order', { dough, size, ingredients }).then((response) => {
-      addToast({
-        type: 'success',
-        title: 'Pedido confirmado',
-        description: 'Seu pedido foi confirmado.',
-      });
-
-      if (response.data.dailyRecommendation) {
+    api
+      .post('/order', { dough, size, ingredients })
+      .then((response) => {
         addToast({
           type: 'success',
-          title: 'Novos pontos adicionados',
-          description: `Parabéns!! Vocẽ fez nosso pedido do dia e ganhou ${response.data.points} novos pontos bônus!`,
+          title: 'Pedido confirmado',
+          description: 'Seu pedido foi confirmado.',
         });
-      }
 
-      clearOrder();
-      push('/');
-    });
+        if (response.data.dailyRecommendation) {
+          addToast({
+            type: 'success',
+            title: 'Novos pontos adicionados',
+            description: `Parabéns!! Vocẽ fez nosso pedido do dia e ganhou ${response.data.points} novos pontos bônus!`,
+          });
+        }
+
+        clearOrder();
+        push('/');
+      })
+      .catch(() => {
+        addToast({
+          title: 'Ocorreu um erro',
+          type: 'error',
+          description:
+            'Desculpe, ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.',
+        });
+      });
   }, [addToast, clearOrder, dough, ingredients, isComplete, push, size]);
 
   const handleCancel = useCallback(() => {
