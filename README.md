@@ -2,8 +2,11 @@
 
 Rodando o projeto:
 cd front
+
 yarn install
+
 yarn server
+
 yarn start
 
 ![](stoom-pizza.gif)
