@@ -39,10 +39,6 @@ export interface OrderContextData {
   isDoughComplete: boolean;
   isIngredientsComplete: boolean;
 
-  getDough(): Dough | null;
-  getIngredients(): Ingredient[] | null;
-  getSize(): Size | null;
-
   setIngredients(ingredients: Ingredient[]): void;
   setDough(dough: Dough): void;
   setSize(size: Size): void;
@@ -188,24 +184,6 @@ const OrderProvider: React.FC = ({ children }) => {
     setPoints(pts);
   }, []);
 
-  const getDough = useCallback((): Dough | null => {
-    const persistedDough = localStorage.getItem(`${key}:dough`);
-
-    return persistedDough ? JSON.parse(persistedDough) : null;
-  }, []);
-
-  const getIngredients = useCallback((): Ingredient[] | null => {
-    const persistedIngredients = localStorage.getItem(`${key}:ingredients`);
-
-    return persistedIngredients ? JSON.parse(persistedIngredients) : null;
-  }, []);
-
-  const getSize = useCallback((): Size | null => {
-    const persistedSize = localStorage.getItem(`${key}:size`);
-
-    return persistedSize ? JSON.parse(persistedSize) : null;
-  }, []);
-
   return (
     <OrderContext.Provider
       value={{
@@ -219,9 +197,6 @@ const OrderProvider: React.FC = ({ children }) => {
         isComplete,
         isDoughComplete,
         isIngredientsComplete,
-        getDough,
-        getIngredients,
-        getSize,
         setIngredients: persistIngredients,
         setDough: persistDough,
         setSize: persistSize,

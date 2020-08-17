@@ -9,7 +9,6 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { useHistory } from 'react-router-dom';
 
-import { access } from 'fs';
 import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
 import formatPrice from '../../utils/formatValue';
