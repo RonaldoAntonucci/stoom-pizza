@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 
 import colors from '../../styles/colors';
+import appearFromLeft from '../../styles/appearFromLeft';
 
 export const Container = styled.div`
   padding: 40px;
@@ -17,6 +18,8 @@ export const Card = styled.div`
   border-radius: 8px;
   border: 2px solid ${colors.title};
   background-color: ${lighten(0.03, colors.background)};
+
+  animation: ${appearFromLeft} 1s;
 
   h1 {
     color: ${colors.title};

@@ -2,12 +2,15 @@ import styled from 'styled-components';
 import { lighten, shade } from 'polished';
 
 import colors from '../../styles/colors';
+import appearFromLeft from '../../styles/appearFromLeft';
 
 export const Container = styled.div`
   padding: 40px;
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  animation: ${appearFromLeft} 1s;
 
   b {
     color: ${colors.success};
