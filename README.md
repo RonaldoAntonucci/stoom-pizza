@@ -1,6 +1,7 @@
 # stoom-pizza
 
 Rodando o projeto:
+
 cd front
 
 yarn install
