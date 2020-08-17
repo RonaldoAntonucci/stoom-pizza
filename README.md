@@ -6,6 +6,8 @@ yarn install
 yarn server
 yarn start
 
+![](stoom-pizza.gif)
+
 *** Objectivo
     - Criar um formulário com passos em telas separadas em que se é possível montar uma pizza.
     O formulário deve oferecer uma recomendação da pizza do dia que, se selecionada, deve informar que o usuário recebeu pontos de benefícios;
