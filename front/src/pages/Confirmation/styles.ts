@@ -34,6 +34,7 @@ export const Card = styled.div`
   > b {
     margin-top: 8px;
     color: ${colors.success};
+    font-size: 18px;
   }
 
   > div {

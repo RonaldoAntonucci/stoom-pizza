@@ -9,6 +9,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { useHistory } from 'react-router-dom';
 
+import { access } from 'fs';
 import api from '../../services/api';
 import useOrder from '../../hooks/useOrder';
 import formatPrice from '../../utils/formatValue';
@@ -122,6 +123,26 @@ const Dough: React.FC = () => {
     return ingredientsStr;
   }, [recommendation]);
 
+  const recommendationPrice = useMemo(() => {
+    let price = 0;
+
+    if (!recommendation) {
+      return price;
+    }
+
+    if (recommendation.dough.price) {
+      price += recommendation.dough.price;
+    }
+
+    if (recommendation.ingredients.length > 0) {
+      price = recommendation.ingredients
+        .map((ingred) => ingred.price)
+        .reduce((acc, prc) => acc + prc, price);
+    }
+
+    return price;
+  }, [recommendation]);
+
   const handleNext = useCallback(
     (data) => {
       if (data.doughs.length < 1) {
@@ -184,6 +205,10 @@ const Dough: React.FC = () => {
               <p>
                 <b>Ingredientes: </b>
                 {recommendationIngredients}
+              </p>
+
+              <p>
+                <b>{formatPrice(recommendationPrice)}</b>
               </p>
 
               <p>

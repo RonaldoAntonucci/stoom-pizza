@@ -111,30 +111,36 @@
     "name": "Pizza Napolitana",
     "dough": {
       "id": 3,
-      "name": "Napolitana"
+      "name": "Napolitana",
+      "price": 14.00
     },
     "points": 50,
     "imageUrl": "https://vejasp.abril.com.br/wp-content/uploads/2018/07/napoli_2.jpg?quality=70&strip=info&resize=680,453",
     "ingredients": [
       {
         "id": 1,
-        "name": "mussarela"
+        "name": "mussarela",
+        "price": 4.00
       },
       {
         "id": 6,
-        "name": "peito de peru"
+        "name": "peito de peru",
+        "price": 6.00
       },
       {
         "id": 7,
-        "name": "palmito"
+        "name": "palmito",
+        "price": 4.00
       },
       {
         "id": 8,
-        "name": "parmesão"
+        "name": "parmesão",
+        "price": 5.00
       },
       {
         "id": 9,
-        "name": "orégano"
+        "name": "orégano",
+        "price": 4.00
       }
     ]
   }

@@ -13,12 +13,28 @@ interface BarProps {
 }
 
 export const Container = styled.div`
-  height: 150px;
+  height: 140px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+
+  h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: ${colors.title};
+  }
+
+  > div {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
 `;
 
 export const BallContent = styled.button<BallProps>`
@@ -38,7 +54,7 @@ export const BallContent = styled.button<BallProps>`
     }
 
     return props.complete ? colors.success : colors.neutral;
-  }};;
+  }};
   font-weight: bold;
 `;
 
@@ -54,12 +70,15 @@ export const Ball = styled.div<BallProps>`
   }};
   margin: 0;
   border-radius: 50%;
-  border: 2px solid ${(props) => {
+  border: 2px solid
+    ${(props) => {
     if (props.selected) {
       return shade(0.2, colors.neutral);
     }
 
-    return props.complete ? shade(0.2, colors.success) : shade(0.2, colors.neutral);
+    return props.complete
+      ? shade(0.2, colors.success)
+      : shade(0.2, colors.neutral);
   }};
 
   transition: background-color 0.2s;

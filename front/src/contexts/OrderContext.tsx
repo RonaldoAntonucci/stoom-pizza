@@ -30,6 +30,7 @@ export interface OrderContextData {
   dough: Dough;
   size: Size;
   imageUrl: string;
+  totalPrice: number;
 
   dailyRecommendation: boolean;
   points: number;
@@ -92,22 +93,6 @@ const OrderProvider: React.FC = ({ children }) => {
     persistedPoints && setPoints(JSON.parse(persistedPoints));
   }, []);
 
-  const clearOrder = useCallback(() => {
-    setIngredients([]);
-    setDough({} as Dough);
-    setSize({} as Size);
-    setImageUrl('');
-    setDailyRecommendation(false);
-    setPoints(0);
-
-    localStorage.removeItem(`${key}:ingredients`);
-    localStorage.removeItem(`${key}:dough`);
-    localStorage.removeItem(`${key}:size`);
-    localStorage.removeItem(`${key}:image`);
-    localStorage.removeItem(`${key}:recommendation`);
-    localStorage.removeItem(`${key}:points`);
-  }, []);
-
   const isComplete: boolean = useMemo(() => {
     if (
       dough &&
@@ -138,6 +123,40 @@ const OrderProvider: React.FC = ({ children }) => {
 
     return false;
   }, [dough, ingredients]);
+
+  const totalPrice: number = useMemo((): number => {
+    let price = 0;
+
+    if (dough && dough.price) {
+      price += dough.price;
+    }
+
+    if (size && size.price) {
+      price += size.price;
+    }
+
+    const ingredsPrice = ingredients
+      .map((ingr) => ingr.price)
+      .reduce((total, prc) => total + prc, price);
+
+    return ingredsPrice;
+  }, [dough, ingredients, size]);
+
+  const clearOrder = useCallback(() => {
+    setIngredients([]);
+    setDough({} as Dough);
+    setSize({} as Size);
+    setImageUrl('');
+    setDailyRecommendation(false);
+    setPoints(0);
+
+    localStorage.removeItem(`${key}:ingredients`);
+    localStorage.removeItem(`${key}:dough`);
+    localStorage.removeItem(`${key}:size`);
+    localStorage.removeItem(`${key}:image`);
+    localStorage.removeItem(`${key}:recommendation`);
+    localStorage.removeItem(`${key}:points`);
+  }, []);
 
   const persistDough = useCallback((doughData: Dough) => {
     localStorage.setItem(`${key}:dough`, JSON.stringify(doughData));
@@ -196,6 +215,7 @@ const OrderProvider: React.FC = ({ children }) => {
         imageUrl,
         dailyRecommendation,
         points,
+        totalPrice,
         isComplete,
         isDoughComplete,
         isIngredientsComplete,

@@ -1,8 +1,9 @@
-import React, { useMemo, useCallback, useEffect } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useOrder from '../../hooks/useOrder';
 import api from '../../services/api';
+import formatPrice from '../../utils/formatValue';
 import useToast from '../../hooks/useToast';
 
 import Button from '../../components/Button';
@@ -22,14 +23,9 @@ const Confirmation: React.FC = () => {
     clearOrder,
     isComplete,
     imageUrl,
+    totalPrice,
   } = useOrder();
   const { addToast } = useToast();
-
-  useEffect(() => {
-    if (!isComplete) {
-      push('/');
-    }
-  }, [isComplete, push]);
 
   const ingredientsInline = useMemo(() => {
     if (!ingredients) {
@@ -113,6 +109,10 @@ const Confirmation: React.FC = () => {
         <p>
           <b>Ingredientes: </b>
           {ingredientsInline}
+        </p>
+
+        <p>
+          <b>{formatPrice(totalPrice)}</b>
         </p>
 
         {dailyRecommendation && (
